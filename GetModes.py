@@ -4,12 +4,12 @@
 
 def get_mode(mode_index):
     modes = {
-        0: "Ionian",
-        1: "Dorian",
-        2: "Phrygian",
-        3: "Lydian",
-        4: "Mixolydian",
-        5: "Aeolian",
-        6: "Locrian"
+        1: "Ionian",
+        2: "Dorian",
+        3: "Phrygian",
+        4: "Lydian",
+        5: "Mixolydian",
+        6: "Aeolian",
+        7: "Locrian"
     }
     return modes[mode_index]

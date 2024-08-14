@@ -424,32 +424,240 @@ def getSubgenre(genre, subgenre_index):
     except:
         return "Unknown error occurred when grabbing subgenre"
 
+def getLyricMood(index):
+    lyricDictionary = \
+    {
+     0: 'Love',
+     1: 'Harmony',
+     2: 'Dissonance',
+     3: 'Friendship',
+     4: 'Enmity',
+     5: 'Indifference',
+     6: 'Laughter',
+     7: 'Tears',
+     8: 'Victory',
+     9: 'Defeat',
+     10: 'Gratitude',
+     11: 'Entitlement',
+     12: 'Restlessness',
+     13: 'Cowardice',
+     14: 'Optimism',
+     15: 'Pessimism',
+     16: 'Complexity',
+     17: 'Simplicity',
+     18: 'Distance',
+     19: 'Intimacy',
+     20: 'Magic',
+     21: 'Commitment',
+     22: 'Escape',
+     23: 'Captivity',
+     24: 'Obedience',
+     25: 'Anxiety',
+     26: 'Celebration',
+     27: 'Idealism',
+     28: 'Mourning',
+     29: 'Poverty',
+     30: 'Fame',
+     31: 'Destiny',
+     32: 'Chance',
+     33: 'Madness',
+     34: 'Sanity',
+     35: 'Corruption',
+     36: 'Wealth',
+     37: 'Routine',
+     38: 'Realism',
+     39: 'Enlightenment',
+     40: 'Liberation',
+     41: 'Bondage',
+     42: 'Embrace',
+     43: 'Kindness',
+     44: 'Integrity',
+     45: 'Calm',
+     46: 'Persistence',
+     47: 'Folly',
+     48: 'Justice',
+     49: 'Injustice',
+     50: 'Treachery',
+     51: 'Grace',
+     52: 'Knowledge',
+     53: 'Empathy',
+     54: 'Understanding',
+     55: 'Growth',
+     56: 'Oppression',
+     57: 'Decay',
+     58: 'Lies',
+     59: 'Ignorance',
+     60: 'Inspiration',
+     61: 'Stagnation',
+     62: 'Fulfillment',
+     63: 'Emptiness',
+     64: 'Acceptance',
+     65: 'Rejection',
+     66: 'Skepticism',
+     67: 'Trust',
+     68: 'Violence',
+     69: 'Creation',
+     70: 'Destruction',
+     71: 'Lust',
+     72: 'Rivalry',
+     73: 'Charity',
+     74: 'Honesty',
+     75: 'Distrust',
+     76: 'Exploration',
+     77: 'Mundane',
+     78: 'Adventure',
+     79: 'Reality',
+     80: 'Peace',
+     81: 'War',
+     82: 'Pain',
+     83: 'Healing',
+     84: 'Innocence',
+     85: 'Guilt',
+     86: 'Redemption',
+     87: 'Isolation',
+     88: 'Unity',
+     89: 'Chaos',
+     90: 'Order',
+     91: 'Darkness',
+     92: 'Light',
+     93: 'Homecoming',
+     94: 'Fantasy',
+     95: 'Dreaming',
+     96: 'Resilience',
+     97: 'Fear',
+     98: 'Heartbreak',
+     99: 'Joy',
+     100: 'Sadness',
+     101: 'Nostalgia',
+     102: 'Anger',
+     103: 'Hope',
+     104: 'Despair',
+     105: 'Clarity',
+     106: 'Freedom',
+     107: 'Betrayal',
+     108: 'Passion',
+     109: 'Regret',
+     110: 'Triumph',
+     111: 'Loss',
+     112: 'Devotion',
+     113: 'Courage',
+     114: 'Longing',
+     115: 'Mystery',
+     116: 'Confusion',
+     117: 'Temptation',
+     118: 'Euphoria',
+     119: 'Revelation',
+     120: 'Rage',
+     121: 'Compassion',
+     122: 'Ambition',
+     123: 'Failure',
+     124: 'Success',
+     125: 'Sacrifice',
+     126: 'Greed',
+     127: 'Generosity',
+     128: 'Humility',
+     129: 'Pride',
+     130: 'Vengeance',
+     131: 'Solitude',
+     132: 'Togetherness',
+     133: 'Deception',
+     134: 'Loyalty',
+     135: 'Melancholy',
+     136: 'Tradition',
+     137: 'Restraint',
+     138: 'Revenge',
+     139: 'Forgiveness',
+     140: 'Strength',
+     141: 'Weakness',
+     142: 'Beauty',
+     143: 'Change',
+     144: 'Silence',
+     145: 'Ugliness',
+     146: 'Turmoil',
+     147: 'Patience',
+     148: 'Impulse',
+     149: 'Doubt',
+     150: 'Noise',
+     151: 'Disrespect',
+     152: 'Serenity',
+     153: 'Wisdom',
+     154: 'Obscurity',
+     155: 'Rebellion',
+     156: 'Faith'
+    }
 
+    return lyricDictionary[index]
 
+def randomVariable(index):
+    import random
+    # current ranges of indexes
+    # mixing = 0
+    # freq range 1 = 1
+    # freq range 2 = 2
+    # freq range 3 = 3
+    # freq range 4 = 4
+    # freq range 5 = 5
+    # freq range 6 = 6
+    # freq range 7 = 7
+    # freq range 8 = 8
+    # freq range 9 = 9
+    # genre = 10
+    # subgenre = 11
+    # tempo = 12
+    # mode = 13
+    # lyrics = 14
+    if index == 0:
+        # Provide random vals for all frequency ranges
+        return None
+    elif index in range(1, 10):
+        # Provide a random val for one frequncy range
+        return None
+    elif index == 10:
+        # provide random val for genre
+        return random.randint(1, 30)
+    elif index == 11:
+        # provide random val for subgenre
+        return random.randint(1, 10)
+    elif index == 12:
+        # provide random val for tempo
+        return random.randint(40, 200)
+    elif index == 13:
+        # provide random val for mode
+        return random.randint(1, 7)
+    elif index == 14:
+        # provide random val for lyrics
+        return random.randint(0, 156)
 
+def probability_function(chance_percentage):
+    import random
+    random_value = random.uniform(0, 100)
+    if random_value < chance_percentage:
+        return True
+    else:
+        return False
 
 
 User_Preferences = {
     "Mixing": {
         "Frequency Ranges": {
-            "20-80hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "80-180hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "200-400hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "400-800hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "800-2400hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "2400-5500hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "5500-9000hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "9000-15000hz": {"Value": 0, "Weight": 0, "Adherence": 0},
-            "15000-20000hz": {"Value": 0, "Weight": 0, "Adherence": 0}
+            "20-80hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "80-180hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "200-400hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "400-800hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "800-2400hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "2400-5500hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "5500-9000hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "9000-15000hz": {"Value": 0, "Weight": 0, "Adherence": .75},
+            "15000-20000hz": {"Value": 0, "Weight": 0, "Adherence": .75}
         },
         "Weight": 0,
-        "Adherence": 0
+        "Adherence": .75
     },
-    "Genre": {"Value": 0, "Weight": 0, "Adherence": 0},
-    "Subgenre": {"Value": 0, "Weight": 0, "Adherence": 0},
-    "Tempo": {"Value": 0, "Weight": 0, "Adherence": 0},
-    "Mode": {"Value": 0, "Weight": 0, "Adherence": 0},
-    "Lyrics": {"Value": 0, "Weight": 0, "Adherence": 0}
+    "Genre": {"Value": 0, "Weight": 0, "Adherence": .75},
+    "Subgenre": {"Value": 0, "Weight": 0, "Adherence": .75},
+    "Tempo": {"Value": 0, "Weight": 0, "Adherence": .75},
+    "Mode": {"Value": 0, "Weight": 0, "Adherence": .75},
+    "Lyrics": {"Value": 0, "Weight": 0, "Adherence": .75}
 }
 
 Database = {"Song1":
@@ -525,9 +733,153 @@ def perfect_sort(user_pref, database):
     return None
 
 def adherence_sort(user_pref, database):
-    None
+    frequency_ranges = [
+        "20-80hz",
+        "80-180hz",
+        "200-400hz",
+        "400-800hz",
+        "800-2400hz",
+        "2400-5500hz",
+        "5500-9000hz",
+        "9000-15000hz",
+        "15000-20000hz"
+    ]
+
+    params = [
+        user_pref["Mixing"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["20-80hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["80-180hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["200-400hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["400-800hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["800-2400hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["2400-5500hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["5500-9000hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["9000-15000hz"]["Adherence"],
+        user_pref["Mixing"]["Frequency Ranges"]["15000-20000hz"]["Adherence"],
+        user_pref["Genre"]["Adherence"],
+        user_pref["Subgenre"]["Adherence"],
+        user_pref["Tempo"]["Adherence"],
+        user_pref["Mode"]["Adherence"],
+        user_pref["Lyrics"]["Adherence"]
+    ]
+
+    mixingProb = params[0]
+    FrangeOneProb = params[1]
+    FrangeTwoProb = params[2]
+    FrangeThreeProb = params[3]
+    FrangeFourProb = params[4]
+    FrangeFiveProb = params[5]
+    FrangeSixProb = params[6]
+    FrangeSevenProb = params[7]
+    FrangeEightProb = params[8]
+    FrangeNineProb = params[9]
+    genreProb = params[10]
+    subgenreProb = params[11]
+    tempoProb = params[12]
+    modeProb = params[13]
+    lyricsProb = params[14]
+
+
+
+    #for each probability, perform x-probability that x variable will be that genre
+    #if result is True, then set target song to have that parameter. If negative,
+    #set target song to have a random parameter (Maybe in the future, it'll be the next most likely variable
+    willAdhere = [
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+    ]
+
+
+
+    for i in range(len(params)):
+        None
+
+
+
 
 def weighted_sort(user_pref, database):
-    None
+    params = [
+        user_pref["Mixing"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["20-80hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["80-180hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["200-400hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["400-800hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["800-2400hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["2400-5500hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["5500-9000hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["9000-15000hz"]["Weight"],
+        user_pref["Mixing"]["Frequency Ranges"]["15000-20000hz"]["Weight"],
+        user_pref["Genre"]["Weight"],
+        user_pref["Subgenre"]["Weight"],
+        user_pref["Tempo"]["Weight"],
+        user_pref["Mode"]["Weight"],
+        user_pref["Lyrics"]["Weight"]
+    ]
+    values = [
+        0,
+        user_pref["Mixing"]["Frequency Ranges"]["20-80hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["80-180hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["200-400hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["400-800hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["800-2400hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["2400-5500hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["5500-9000hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["9000-15000hz"]["Value"],
+        user_pref["Mixing"]["Frequency Ranges"]["15000-20000hz"]["Value"],
+        user_pref["Genre"]["Value"],
+        user_pref["Subgenre"]["Value"],
+        user_pref["Tempo"]["Value"],
+        user_pref["Mode"]["Value"],
+        user_pref["Lyrics"]["Value"]
+    ]
 
-print(perfect_sort(User_Preferences, Database))
+    mixingWeight = params[0]
+    FrangeOneWeight = params[1]
+    FrangeTwoWeight = params[2]
+    FrangeThreeWeight = params[3]
+    FrangeFourWeight = params[4]
+    FrangeFiveWeight = params[5]
+    FrangeSixWeight = params[6]
+    FrangeSevenWeight = params[7]
+    FrangeEightWeight = params[8]
+    FrangeNineWeight = params[9]
+    genreWeight = params[10]
+    subgenreWeight = params[11]
+    tempoWeight = params[12]
+    modeWeight = params[13]
+    lyricsWeight = params[14]
+
+    # for each probability, perform x-probability that x variable will considered
+    considerWeight = []
+    for weight in params:
+        considerWeight.append(probability_function(weight))
+
+    target_song = []
+    skipMixing = False
+    for i in range(0, len(params)):
+        if skipMixing and i < 10:
+            target_song.append(randomVariable(i))
+        elif not considerWeight[i]:
+            if i == 0:
+                skipMixing = True
+                continue
+            target_song.append(randomVariable(i))
+        else:
+            target_song.append(values[i])
+    return target_song
+
+
+
+
+print(weighted_sort(User_Preferences, Database))
+
