@@ -432,15 +432,15 @@ def getSubgenre(genre, subgenre_index):
 User_Preferences = {
     "Mixing": {
         "Frequency Ranges": {
-            "20-80hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "80-180hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "200-400hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "400-800hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "800-2400hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "2400-5500hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "5500-9000hz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "9-15khz": {"Val": 0, "Weight": 0, "Adherence": 0},
-            "15-20khz": {"Val": 0, "Weight": 0, "Adherence": 0}
+            "20-80hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "80-180hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "200-400hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "400-800hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "800-2400hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "2400-5500hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "5500-9000hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "9000-15000hz": {"Value": 0, "Weight": 0, "Adherence": 0},
+            "15000-20000hz": {"Value": 0, "Weight": 0, "Adherence": 0}
         },
         "Weight": 0,
         "Adherence": 0
@@ -453,7 +453,8 @@ User_Preferences = {
 }
 
 Database = {"Song1":
-                {"Mixing":
+                {"Name": "Test Song",
+                    "Mixing":
                     {"Frequency Ranges": {
                         "20-80hz": 0,
                         "80-180hz": 0,
@@ -462,18 +463,71 @@ Database = {"Song1":
                         "800-2400hz": 0,
                         "2400-5500hz": 0,
                         "5500-9000hz": 0,
-                        "9-15khz": 0,
-                        "15-20khz": 0}},
+                        "9000-15000hz": 0,
+                        "15000-20000hz": 0}},
                  "Genre": 0,
                  "Subgenre": 0,
                  "Tempo": 0,
                  "Mode": 0,
-                 "Lyrics": 0}}
+                 "Lyrics": 0},
+            "Song2":
+                {"Name": "Test Song 2",
+                 "Mixing":
+                     {"Frequency Ranges": {
+                         "20-80hz": 0,
+                         "80-180hz": 0,
+                         "200-400hz": 0,
+                         "400-800hz": 0,
+                         "800-2400hz": 0,
+                         "2400-5500hz": 0,
+                         "5500-9000hz": 0,
+                         "9000-15000hz": 0,
+                         "15000-20000hz": 0}},
+                 "Genre": 0,
+                 "Subgenre": 0,
+                 "Tempo": 0,
+                 "Mode": 0,
+                 "Lyrics": 0}
+            }
 
 
+def perfect_sort(user_pref, database):
+    frequency_ranges = [
+        "20-80hz",
+        "80-180hz",
+        "200-400hz",
+        "400-800hz",
+        "800-2400hz",
+        "2400-5500hz",
+        "5500-9000hz",
+        "9000-15000hz",
+        "15000-20000hz"
+    ]
 
-print(User_Preferences["Mixing"])
+    #pefect match means all 14 variables of user preferences are met
+    for song in database:
+        checks = 0
+        for freq_range in frequency_ranges:
+            if database[song]["Mixing"]["Frequency Ranges"][freq_range] == user_pref["Mixing"]["Frequency Ranges"][freq_range]["Value"]:
+                checks += 1
+        for var in database[song]:
+            try:
+                if database[song][var] == user_pref[var]["Value"]:
+                    checks += 1
+            except KeyError:
+                continue
+        if checks == 14:
+            return database[song]["Name"]
 
 
+    if user_pref["Mixing"]["Frequency Ranges"]["20-80hz"]:
+        None
+    return None
 
-print(get_mode(User_Preferences["Mode"]["Value"]))
+def adherence_sort(user_pref, database):
+    None
+
+def weighted_sort(user_pref, database):
+    None
+
+print(perfect_sort(User_Preferences, Database))
