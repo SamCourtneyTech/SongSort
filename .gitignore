@@ -13,4 +13,4 @@ env/
 .DS_Store
 
 # PyCharm
-.idea/
+.idea
