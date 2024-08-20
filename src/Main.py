@@ -916,7 +916,7 @@ def weighted_sort(user_pref, database):
         considerWeight.append(probability_function(weight))
 
     target_song = []
-    skipMixing = False
+    skipMi xing = False
     for i in range(0, len(params)):
         if skipMixing and i < 10:
             target_song.append(randomVariable(i))
