@@ -627,6 +627,12 @@ def randomVariable(index):
     elif index == 14:
         # provide random val for lyrics
         return random.randint(0, 156)
+    elif index == 15:
+        return "Haven't defined harmonic progressions bounds yet"
+    elif index == 16:
+        return "Haven't defined instrumentation bounds yet"
+    elif index == 17:
+        return "haven't defined artist bounds yet"
 
 def probability_function(chance_percentage):
     import random
@@ -657,7 +663,14 @@ User_Preferences = {
     "Subgenre": {"Value": 0, "Weight": 0, "Adherence": .75},
     "Tempo": {"Value": 0, "Weight": 0, "Adherence": .75},
     "Mode": {"Value": 0, "Weight": 0, "Adherence": .75},
-    "Lyrics": {"Value": 0, "Weight": 0, "Adherence": .75}
+    "Lyrics": {"Value": 0, "Weight": 0, "Adherence": .75},
+    "Harmonic Progressions": {"Value": (0), "Weight": 0, "Adherence": .75},
+    #harmonic progresssion's values will be indexes that correspond to progressions. There should be able to be multiple or one progression.
+    "Instrumentation": {"Value": (0), "Weight": 0, "Adherence": .75},
+    #instrumentation's values will be indexes that correspond to instruments. There should be able to be multiple or one instrument.
+    "Artist": {"Value": (0), "Weight": 0, "Adherence": .75}
+
+
 }
 
 Database = {"Song1":
@@ -695,7 +708,11 @@ Database = {"Song1":
                  "Subgenre": 0,
                  "Tempo": 0,
                  "Mode": 0,
-                 "Lyrics": 0}
+                 "Lyrics": 0,
+                 "Harmonic Progressions": (0),
+                 "Instrumentation": (0),
+                 "Artist": 0
+                 }
             }
 
 
@@ -760,7 +777,10 @@ def adherence_sort(user_pref, database):
         user_pref["Subgenre"]["Adherence"],
         user_pref["Tempo"]["Adherence"],
         user_pref["Mode"]["Adherence"],
-        user_pref["Lyrics"]["Adherence"]
+        user_pref["Lyrics"]["Adherence"],
+        user_pref["Harmonic Progressions"]["Adherence"],
+        user_pref["Instrumentation"]["Adherence"],
+        user_pref["Artist"]["Adherence"]
     ]
 
     mixingProb = params[0]
@@ -778,6 +798,9 @@ def adherence_sort(user_pref, database):
     tempoProb = params[12]
     modeProb = params[13]
     lyricsProb = params[14]
+    harmonicProb = params[15]
+    instrumentProb = params[16]
+    artistProb = params[17]
 
 
 
@@ -797,6 +820,12 @@ def adherence_sort(user_pref, database):
         True,
         True,
         True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True
     ]
 
 
@@ -808,6 +837,19 @@ def adherence_sort(user_pref, database):
 
 
 def weighted_sort(user_pref, database):
+
+    frequency_ranges = [
+        "20-80hz",
+        "80-180hz",
+        "200-400hz",
+        "400-800hz",
+        "800-2400hz",
+        "2400-5500hz",
+        "5500-9000hz",
+        "9000-15000hz",
+        "15000-20000hz"
+    ]
+
     params = [
         user_pref["Mixing"]["Weight"],
         user_pref["Mixing"]["Frequency Ranges"]["20-80hz"]["Weight"],
@@ -823,7 +865,10 @@ def weighted_sort(user_pref, database):
         user_pref["Subgenre"]["Weight"],
         user_pref["Tempo"]["Weight"],
         user_pref["Mode"]["Weight"],
-        user_pref["Lyrics"]["Weight"]
+        user_pref["Lyrics"]["Weight"],
+        user_pref["Harmonic Progressions"]["Weight"],
+        user_pref["Instrumentation"]["Weight"],
+        user_pref["Artist"]["Weight"]
     ]
     values = [
         0,
@@ -840,7 +885,10 @@ def weighted_sort(user_pref, database):
         user_pref["Subgenre"]["Value"],
         user_pref["Tempo"]["Value"],
         user_pref["Mode"]["Value"],
-        user_pref["Lyrics"]["Value"]
+        user_pref["Lyrics"]["Value"],
+        user_pref["Harmonic Progressions"]["Value"],
+        user_pref["Instrumentation"]["Value"],
+        user_pref["Artist"]["Value"]
     ]
 
     mixingWeight = params[0]
@@ -858,6 +906,9 @@ def weighted_sort(user_pref, database):
     tempoWeight = params[12]
     modeWeight = params[13]
     lyricsWeight = params[14]
+    harmonicWeight = params[15]
+    instrumentWeight = params[16]
+    artistWeight = params[17]
 
     # for each probability, perform x-probability that x variable will considered
     considerWeight = []
@@ -874,10 +925,27 @@ def weighted_sort(user_pref, database):
                 skipMixing = True
                 continue
             target_song.append(randomVariable(i))
+        elif i == 0:
+            continue
         else:
             target_song.append(values[i])
-    return target_song
-
+    #Make target song into similar database to user pref?
+    for song in database:
+        index = 0
+        checks = 0
+        for freq_range in frequency_ranges:
+            if database[song]["Mixing"]["Frequency Ranges"][freq_range] == target_song[index]:
+                checks += 1
+                index += 1
+        for var in database[song]:
+            try:
+                if database[song][var] == user_pref[var]["Value"]:
+                    checks += 1
+            except KeyError:
+                continue
+        if checks == 14:
+            return database[song]["Name"]
+        #The sorting algorithm will eventually need some version of logarithmic search to stay efficient
 
 
 
